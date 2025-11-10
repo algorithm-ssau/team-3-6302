@@ -97,7 +97,9 @@
 .recipe-card-meta {
   display: flex;
   gap: 15px;
+  justify-content: center; /* Добавь эту строку */
 }
+
 
 .meta-item {
   display: flex;
