@@ -39,6 +39,22 @@ export const apiService = {
     const response = await api.get<Recipe>(`/recipes/${id}`);
     return response.data;
   },
+
+  // Аутентификация
+  signup: async (fullName: string, email: string, password: string) => {
+    const response = await api.post('/auth/signup', { fullName, email, password });
+    return response.data;
+  },
+
+  login: async (email: string, password: string) => {
+    const response = await api.post('/auth/login', { email, password });
+    return response.data;
+  },
+
+  getCurrentUser: async (email: string) => {
+    const response = await api.get('/auth/me', { params: { email } });
+    return response.data;
+  },
 };
 
 export default apiService;

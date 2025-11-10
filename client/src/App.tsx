@@ -1,14 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import RecipePage from './pages/Recipe';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import CookieNotice from './components/CookieNotice';
 import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
+      <CookieNotice />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipe/:id" element={<RecipePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/category/:categoryName" element={<div>Рецепты категории</div>} />
         <Route path="/categories" element={<div>Все категории</div>} />
         <Route path="/recipes" element={<div>Все рецепты</div>} />
