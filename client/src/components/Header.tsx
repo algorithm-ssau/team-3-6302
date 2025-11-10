@@ -1,17 +1,20 @@
-import './Header.css'
+import { Link } from 'react-router-dom';
+import './Header.css';
 
 function Header() {
   return (
     <header className="header">
       <div className="header-container">
         <div className="logo">
-          <h1>TasteCraft</h1>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <h1>TasteCraft</h1>
+          </Link>
         </div>
         
         <nav className="nav">
-          <a href="/">Главная</a>
-          <a href="/recipes">Рецепты</a>
-          <a href="/about">О нас</a>
+          <Link to="/">Главная</Link>
+          <Link to="/recipes">Рецепты</Link>
+          <Link to="/about">О нас</Link>
         </nav>
         
         <div className="header-actions">
@@ -27,14 +30,12 @@ function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
-
+export default Header;
 
 // Когда коллеги сделают авторизацию:
-
 // function Header() {
 //   const user = useAuth()  // получаем текущего пользователя
   

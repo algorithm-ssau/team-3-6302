@@ -1,7 +1,7 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
-const Footer: React.FC = () => {
+function Footer() {
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -11,13 +11,13 @@ const Footer: React.FC = () => {
         </div>
         
         <nav className="footer-nav">
-          <a href="/">Главная</a>
-          <a href="/recipes">Рецепты</a>
-          <a href="/about">О нас</a>
+          <Link to="/">Главная</Link>
+          <Link to="/recipes">Рецепты</Link>
+          <Link to="/about">О нас</Link>
         </nav>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Recipe } from '../types/App';
 import './HeroCard.css';
 
@@ -7,6 +8,12 @@ interface HeroCardProps {
 }
 
 const HeroCard: React.FC<HeroCardProps> = ({ recipe }) => {
+  const navigate = useNavigate();
+
+  const handleViewRecipe = () => {
+    navigate(`/recipe/${recipe.id}`);
+  };
+
   return (
     <div className="hero-card">
       <div className="hero-content">
@@ -36,7 +43,7 @@ const HeroCard: React.FC<HeroCardProps> = ({ recipe }) => {
             </div>
           </div>
           
-          <button className="view-button">
+          <button className="view-button" onClick={handleViewRecipe}>
             Посмотреть
             <span>→</span>
           </button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroCard from '../components/HeroCard';
@@ -7,6 +8,8 @@ import { Recipe, Category } from '../types/App';
 import './Home.css';
 
 function Home() {
+  const navigate = useNavigate();
+
   // Моковые данные - один рецепт для Hero карточки
   const heroRecipe: Recipe = {
     id: '1',
@@ -44,7 +47,9 @@ function Home() {
           <section className="categories-section">
             <div className="section-header">
               <h2>Категории</h2>
-              <button className="view-all-btn">Все категории</button>
+              <button className="view-all-btn" onClick={() => navigate('/categories')}>
+                Все категории
+              </button>
             </div>
             
             <div className="categories-grid">
