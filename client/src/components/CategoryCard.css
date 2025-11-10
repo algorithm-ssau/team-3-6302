@@ -1,0 +1,49 @@
+.category-card {
+  border-radius: 15px;
+  padding: 35px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Цвета для каждой категории */
+.category-card:nth-child(1) {
+  background: linear-gradient(135deg, #F5F5F5 0%, #ECECEC 100%);
+}
+
+.category-card:nth-child(2) {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+}
+
+.category-card:nth-child(3) {
+  background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+}
+
+.category-card:nth-child(4) {
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFEAA7 100%);
+}
+
+.category-card:nth-child(5) {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+}
+
+.category-card:nth-child(6) {
+  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+}
+
+.category-emoji {
+  font-size: 70px;
+  margin-bottom: 12px;
+}
+
+.category-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+}

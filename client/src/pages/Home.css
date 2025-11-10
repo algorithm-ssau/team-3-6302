@@ -1,0 +1,249 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.home-main {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Секция категорий */
+.categories-section {
+  margin: 100px 0 80px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.view-all-btn {
+  background: #E3F5F8;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.view-all-btn:hover {
+  background: #c8eef5;
+}
+
+/* Категории на всю ширину */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+/* Секция простых рецептов */
+.simple-recipes-section {
+  margin: 150px 0 100px;
+}
+
+.section-title {
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 60px 0;
+  color: #000;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Секция рецептов по настроению */
+.mood-recipes-section {
+  margin: 80px 0 100px;
+}
+
+.mood-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.mood-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+}
+
+.mood-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.mood-btn {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 15px;
+  font-size: 36px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mood-btn.happy {
+  background: #FFF9E6;
+}
+
+.mood-btn.neutral {
+  background: #E8E6FF;
+}
+
+.mood-btn.sad {
+  background: #FFE6E6;
+}
+
+.mood-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mood-btn.active {
+  transform: scale(1.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Сетка для маленьких карточек 4x2 */
+.recipes-grid-small {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Уменьшение размеров карточек в маленькой сетке */
+.recipes-grid-small .recipe-card-image {
+  height: 180px;
+}
+
+.recipes-grid-small .recipe-card-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.recipes-grid-small .recipe-card-content {
+  padding: 16px;
+}
+
+.recipes-grid-small .meta-item {
+  font-size: 13px;
+}
+
+.recipes-grid-small .favorite-btn {
+  width: 36px;
+  height: 36px;
+  top: 12px;
+  right: 12px;
+}
+
+.recipes-grid-small .heart-icon {
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipes-grid-small {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .mood-title {
+    font-size: 28px;
+  }
+
+  .mood-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .section-header h2 {
+    font-size: 24px;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .recipes-grid-small {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .simple-recipes-section {
+    margin: 60px 0 80px;
+  }
+
+  .mood-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .mood-title {
+    font-size: 24px;
+  }
+
+  .mood-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 28px;
+  }
+}
