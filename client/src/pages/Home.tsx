@@ -1,8 +1,15 @@
+import Header from '../components/Header
+
 function Home() {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>🍳 Главная страница - Рецепты</h1>
-      <p>Скоро здесь будут компоненты!</p>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
+      <Header />
+      
+      <div style={{ padding: '30px' }}>
+        <h1>Список рецептов</h1>
+        <p>Скоро здесь будут карточки</p>
+      </div>
+
     </div>
   )
 }
