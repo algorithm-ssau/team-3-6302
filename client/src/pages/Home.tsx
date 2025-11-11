@@ -145,10 +145,10 @@ function Home() {
             </div>
             
             <div className="categories-grid">
-              {categories.map((category) => (
-                <CategoryCard key={category.id} category={category} />
-              ))}
-            </div>
+            {categories.slice(0, 6).map((category) => (
+              <CategoryCard key={category.id} category={category} />
+            ))}
+          </div>
           </section>
 
           {/* Секция простых рецептов */}
