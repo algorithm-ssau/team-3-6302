@@ -39,6 +39,13 @@ export const apiService = {
     const response = await api.get<Recipe>(`/recipes/${id}`);
     return response.data;
   },
+
+    searchRecipes: async (query: string): Promise<Recipe[]> => {
+    const response = await api.get<Recipe[]>('/recipes/search', {
+      params: { q: query },
+    });
+    return response.data;
+  },
 };
 
 export default apiService;
