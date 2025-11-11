@@ -35,7 +35,7 @@ function Home() {
         ]);
 
         setHeroRecipe(hero);
-        setCategories(categoriesData);
+        setCategories(categoriesData.slice(0, 5)); // Ограничиваем 5 категориями для главной
         setSimpleRecipes(recipesData);
         setMoodRecipes(recipesData); // Пока используем те же рецепты
       } catch (err) {
