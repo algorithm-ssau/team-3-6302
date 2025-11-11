@@ -1,4 +1,4 @@
-import Router from 'express'
+import { Router, Request, Response } from 'express';
 import prisma from '../utils/prisma'
 
 const router = Router()
@@ -51,6 +51,44 @@ router.get('/recipes/hero', async (_req, res) => {
 
     res.json(data)
 })
+
+// GET /recipes/search - поиск по названию (ДОЛЖЕН БЫТЬ ПЕРЕД /:id)
+router.get('/recipes/search', (async (req: Request, res: Response) => {
+    try {
+        const query = (req.query.q as string) || '';
+
+        if (!query.trim()) {
+            res.json([]);
+            return;
+        }
+
+        const recipes = await prisma.recipe.findMany({
+            where: {
+                title: {
+                    contains: query,
+                    mode: 'insensitive',
+                },
+            },
+            select: {
+                id: true,
+                title: true,
+                imageUrl: true,
+            },
+            take: 10,
+        });
+
+        const data = recipes.map((r) => ({
+            id: r.id,
+            title: r.title,
+            image: r.imageUrl || '',
+        }));
+
+        res.json(data);
+    } catch (error) {
+        console.error('Search error:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+}) as any);
 
 // GET /recipes/:id - получить рецепт по ID
 router.get('/recipes/:id', async (req, res) => {

@@ -40,6 +40,13 @@ export const apiService = {
     return response.data;
   },
 
+  searchRecipes: async (query: string): Promise<Recipe[]> => {
+    const response = await api.get<Recipe[]>('/recipes/search', {
+      params: { q: query },
+    });
+    return response.data;
+  },
+
   // Аутентификация
   signup: async (fullName: string, email: string, password: string) => {
     const response = await api.post('/auth/signup', { fullName, email, password });
