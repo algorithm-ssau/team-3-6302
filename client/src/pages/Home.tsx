@@ -11,7 +11,8 @@ import './Home.css';
 
 function Home() {
   const navigate = useNavigate();
-  const [selectedMood, setSelectedMood] = useState<string | null>(null);
+  // По умолчанию показываем "весёлое" настроение
+  const [selectedMood, setSelectedMood] = useState<string | null>('happy');
   const [heroRecipe, setHeroRecipe] = useState<Recipe | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [simpleRecipes, setSimpleRecipes] = useState<Recipe[]>([]);
@@ -31,11 +32,11 @@ function Home() {
         const [hero, categoriesData, recipesData] = await Promise.all([
           apiService.getHeroRecipe(),
           apiService.getCategories(),
-          apiService.getRecipes({ limit: 6 }),
+          apiService.getRecipes({ limit: 8 }), // Ограничиваем 8 рецептами
         ]);
 
         setHeroRecipe(hero);
-        setCategories(categoriesData.slice(0, 5)); // Ограничиваем 5 категориями для главной
+  setCategories(categoriesData.slice(0, 5)); // Ограничиваем 5 категориями для главной
         setSimpleRecipes(recipesData);
         setMoodRecipes(recipesData); // Пока используем те же рецепты
       } catch (err) {
@@ -55,6 +56,7 @@ function Home() {
       if (!selectedMood) {
         // Если настроение не выбрано, показываем обычные рецепты
         const recipes = await apiService.getRecipes({ limit: 8 });
+        console.debug('[Home] loadMoodRecipes (no mood) ->', recipes.length, recipes.map(r => r.id));
         setMoodRecipes(recipes);
         return;
       }
@@ -71,17 +73,20 @@ function Home() {
         const moodName = moodMap[selectedMood];
         if (moodName) {
           const recipes = await apiService.getRecipes({ mood: moodName, limit: 8 });
+          console.debug('[Home] loadMoodRecipes (mood:', moodName, ') ->', recipes.length, recipes.map(r => r.id));
           setMoodRecipes(recipes);
         } else {
           // Если настроение не найдено, показываем обычные рецепты
           const recipes = await apiService.getRecipes({ limit: 8 });
+          console.debug('[Home] loadMoodRecipes (mood missing) ->', recipes.length, recipes.map(r => r.id));
           setMoodRecipes(recipes);
         }
       } catch (err) {
-        console.error('Error loading mood recipes:', err);
-        // В случае ошибки показываем обычные рецепты
-        const recipes = await apiService.getRecipes({ limit: 8 });
-        setMoodRecipes(recipes);
+  console.error('Error loading mood recipes:', err);
+  // В случае ошибки показываем обычные рецепты
+  const recipes = await apiService.getRecipes({ limit: 8 });
+  console.debug('[Home] loadMoodRecipes (error fallback) ->', recipes.length, recipes.map(r => r.id));
+  setMoodRecipes(recipes);
       } finally {
         setMoodLoading(false);
       }
@@ -145,10 +150,10 @@ function Home() {
             </div>
             
             <div className="categories-grid">
-            {categories.slice(0, 6).map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </div>
+              {categories.map((category) => (
+                <CategoryCard key={category.id} category={category} />
+              ))}
+            </div>
           </section>
 
           {/* Секция простых рецептов */}
@@ -156,7 +161,7 @@ function Home() {
             <h2 className="section-title">Простые и вкусные рецепты</h2>
             
             <div className="recipes-grid">
-              {simpleRecipes.map((recipe) => (
+              {simpleRecipes.slice(0, 8).map((recipe) => (
                 <RecipeCard key={recipe.id} recipe={recipe} />
               ))}
             </div>
