@@ -1,7 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 function Footer() {
+  const navigate = useNavigate();
+  
+  const handleHomeClick = () => {
+    navigate('/');
+    // Прокрутка в начало страницы
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -11,7 +19,8 @@ function Footer() {
         </div>
         
         <nav className="footer-nav">
-          <Link to="/">Главная</Link>
+          {/* Navigate home and scroll to top */}
+          <Link to="/" onClick={handleHomeClick}>Главная</Link>
           <Link to="/recipes">Рецепты</Link>
           <Link to="/about">О нас</Link>
         </nav>
