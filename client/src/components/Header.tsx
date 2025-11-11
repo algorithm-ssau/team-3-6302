@@ -1,10 +1,37 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
 import SearchModal from './SearchModal';
 import './Header.css';
+import guestProfilePic from '../assets/guest-profile-pic.svg';
 
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadUser = () => {
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        setUser(JSON.parse(userData));
+      } else {
+        setUser(null);
+      }
+    };
+
+    loadUser();
+    window.addEventListener('userChanged', loadUser);
+    return () => window.removeEventListener('userChanged', loadUser);
+  }, []);
+
+  const handleAvatarClick = () => {
+    if (user) {
+      navigate('/profile');
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <>
@@ -29,8 +56,38 @@ function Header() {
                 <path d="M20 20L17 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </button>
-            <div className="user-avatar">
-              <img src="https://i.pravatar.cc/40" alt="User" /> 
+            {user && (
+              <Link 
+                to="/favorites" 
+                className="favorites-link"
+                title="Избранное"
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  color: '#333',
+                  textDecoration: 'none',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f5f5f5';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+              >
+                <FaHeart style={{ fontSize: '20px' }} />
+              </Link>
+            )}
+            <div className="user-avatar" onClick={handleAvatarClick} style={{ cursor: 'pointer' }}>
+              <img 
+              src={user?.avatarUrl || guestProfilePic}
+              //  src={user?.avatarUrl || `https://i.pravatar.cc/40?u=${user?.email || 'guest'}`} 
+                alt={user?.username || 'User'} 
+              /> 
             </div>
           </div>
         </div>
