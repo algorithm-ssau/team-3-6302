@@ -53,7 +53,7 @@
 /* Категории с горизонтальной прокруткой - два ряда */
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 карточек в ряду */
+  grid-template-columns: repeat(5, 1fr); /* 5 карточек в ряду */
   gap: 20px;
   overflow: visible; /* убираем скролл */
   max-height: none;

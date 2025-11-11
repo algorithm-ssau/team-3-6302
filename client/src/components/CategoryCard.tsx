@@ -10,7 +10,7 @@ function CategoryCard({ category }: CategoryCardProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/category/${category.name}`);
+    navigate(`/category/${category.name}`, { state: { categoryId: category.id } });
   };
 
   return (
